@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "ResetCode";
+    Layout = null;
+}
+
+<link href="~/Content/Styles.css" rel="stylesheet" type="text/css" />
+
+
+@*
+<div class="item1">
+    <form action="/User/UpdatePassword" method="post" >
+
+        <h1>RsetCode</h1>
+        <h2>enter reset code</h2>
+        <input type="text" name="code">
+        <input type="submit" name="confirm" value="Confirm">
+
+    </form>
+</div>
+*@
+
+<body>
+    <div class="login-card">
+        <h1>Reset Code</h1><br>
+        <form action="/User/UpdatePassword" method="post">
+            <h2>enter reset code</h2>
+            <input type="text" name="code">
+            <input type="submit" name="confirm" class="login login-submit" value="Confirm">
+        </form>
+
+    </div>
+</body>

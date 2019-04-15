@@ -1,0 +1,13 @@
+/DBPractice/packages
+/DBPractice/DBPractice/bin
+/DBPractice/PMS.BAL/bin
+/DBPractice/PMS.DAL/bin
+/DBPractice/PMS.Entities/bin
+/DBPractice/WebPrac/bin
+/DBPractice/WebPrac/obj
+/DBPractice/DBPractice/obj
+/DBPractice/PMS.BAL/obj
+/DBPractice/PMS.DAL/obj
+/DBPractice/PMS.Entities/obj
+/DBPractice/WebPrac/*.user
+/DBPractice/*.suo

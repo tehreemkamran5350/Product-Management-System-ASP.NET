@@ -1,0 +1,42 @@
+﻿@model PMS.Entities.ProductDTO
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_MyProductLayout.cshtml";
+}
+<link href="~/Content/Styles.css" rel="stylesheet" type="text/css" />
+@*<body style="background-color:#c1b2a6">
+    <h2>New</h2>
+    <form action='@Url.Content("~/Product/Save")' method="post" enctype="multipart/form-data">
+        @if (Model.PictureName != "")
+        {
+            <img src='@Url.Content("~/UploadedFiles")/@Model.PictureName' style="width:100px;height:100px;" /> <br />
+        }
+        <input type="hidden" name="ProductID" value="@Model.ProductID" />
+        <input type="hidden" name="PictureName" value="@Model.PictureName" />
+        Name<input type="text" name="Name" value="@Model.Name" /> <br />
+        Price: <input type="text" name="Price" value="@Model.Price" /> <br />
+        Image: <input type="file" name="Image" />
+        <input type="submit" value="Save" />
+    </form>
+</body>
+    *@
+<body>
+
+    <div class="login-card">
+        <h1>New Product</h1><br>
+        <form action='@Url.Content("~/Product/Save")' method="post" enctype="multipart/form-data">
+            @if (Model.PictureName != "")
+            {
+                <img src='@Url.Content("~/UploadedFiles")/@Model.PictureName' style="width:100px;height:100px;" /> <br />
+            }
+            <input type="hidden" name="ProductID" value="@Model.ProductID" />
+            <input type="hidden" name="PictureName" value="@Model.PictureName" />
+            Name<input type="text" name="Name" value="@Model.Name" /> <br />
+            Price: <input type="text" name="Price" value="@Model.Price" /> <br />
+            Image: <input type="file" name="Image" /><br>
+            <input type="submit" name="signUp" class="login login-submit" value="Save">
+        </form>
+
+    </div>
+</body>

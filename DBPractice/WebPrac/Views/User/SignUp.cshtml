@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = null;
+}
+<link href="~/Content/Styles.css" rel="stylesheet" type="text/css" />
+
+
+@*<div class="item2">
+    <form action="/User/Register" method="post" enctype="multipart/form-data">
+
+        <h1>SignUp</h1>
+        Name:<br>
+        <input type="text" name="Name" required /><br><br>
+        Login:<br>
+        <input type="text" name="Login" required /><br><br>
+        Email:<br>
+        <input type="text" name="Name" required /><br><br>
+        Password:<br>
+        <input type='password' name="Password" required><br>
+        <br>
+        Picture:<br>
+        <input type="file" required name="PictureName"><br><br>
+        <input type='submit' name="signUp" value="SignUp"><br><br>
+    </form>
+</div>
+*@
+<body>
+    <div class="login-card">
+        <h1>Sign Up</h1><br>
+        <form action="/User/Register" method="post" enctype="multipart/form-data">
+            Name:<br>
+            <input type="text" name="Name" required /><br><br>
+            Login:<br>
+            <input type="text" name="Login" required /><br><br>
+            Email:<br>
+            <input type="text" name="Name" required /><br><br>
+            Password:<br>
+            <input type='password' name="Password" required><br>
+            <br>
+            Picture:<br>
+            <input type="file" required name="PictureName"><br><br>
+            <input type="submit" name="signUp" class="login login-submit" value="SignUp">
+        </form>
+        
+    </div>
+</body>

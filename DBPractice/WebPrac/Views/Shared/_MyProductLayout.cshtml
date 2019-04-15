@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_MyProductLayout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background-image: url('~/bg.jpg');
+            margin: 0;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+      @*  body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }*@
+
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            /* Style the topnav links */
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                /* Change color on hover */
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+        /* Style the content */
+        .content {
+            background-color: #ddd;
+            padding: 10px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        window.BasePath = '@Url.Content("~")';
+    </script>
+    @Styles.Render("~/Content/css")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/MyAppGlobal.js"></script>
+    @RenderSection("scripts", false)
+</head>
+<body>
+
+    <div class="topnav">
+        @if (WebPrac.Security.SessionManager.User.IsAdmin)
+        {
+            <a href="/Home/Admin">Home</a>
+            <a href="/Product/ShowAll">Show All</a>
+            @*<a href="/Product/New">New Product</a>*@
+        }
+        else
+        {
+            <a href="/Home/NormalUser">Home</a>
+            <a href="/Product/ShowAll">Show All</a>
+        }
+        <a href="/User/EditProfile">Edit Profile</a>
+        <a href="/User/ChangePassword">Change Password</a>
+        <a href="/Product2/New">Products-AJAX</a>
+        <a href="/User/Logout">Logout</a>
+        
+
+    </div>
+    <div align="center">
+        <h1> Welcome @WebPrac.Security.SessionManager.User.Name</h1>
+        <span style="color:red">@TempData["Message"]</span>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+
+
+
+
+

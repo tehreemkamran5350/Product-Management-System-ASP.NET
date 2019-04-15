@@ -1,0 +1,158 @@
+﻿@model List<PMS.Entities.ProductDTO>
+
+@{
+    ViewBag.Title = "ShowAll";
+    Layout = "~/Views/Shared/_MyProductLayout.cshtml";
+}
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $(".editbutton").click(function () {
+                var pid = $(this).attr("pid");
+                $("#ProductID").val(pid);
+            });
+        });
+    </script>
+
+}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
+
+<body style="background-color:#c1b2a6">
+
+
+
+    @*<table>
+        <tr>
+            <th>ProductID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>CreatedOn</th>
+            <th>CreatedBy</th>
+            <th>Picture</th>
+            <th>Edit</th>
+             <th>Delete</th>
+
+
+        </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.CreatedOn</td>
+                    @{
+                             var user = PMS.DAL.UserDAO.GetUserById(item.CreatedBy);
+                             if (user != null)
+                             {
+                                 <td>@user.Name</td>
+                             }
+                             else
+                             {
+                                <td></td>
+                    }
+                    }
+
+
+                    <td><img src="/UploadedFiles/@item.PictureName" style="width:100px;height:100px;" /></td>
+
+                    @if (WebPrac.Security.SessionManager.User.IsAdmin || WebPrac.Security.SessionManager.User.UserID == item.CreatedBy)
+                    {
+                        <td><input type="submit" value="Edit" class="editbutton" pid="@item.ProductID" /> </td>
+                        //<td><a href="/Product/Edit/@item.ProductID">Edit</a></td>
+                        <td><a href="/Product/Delete/@item.ProductID">Delete</a></td>
+
+
+                    }
+                </tr>
+            }
+        </table>
+    *@
+
+    <div style="padding-left: 80px;">
+        @if (WebPrac.Security.SessionManager.User.IsAdmin)
+        {
+            <a href="/Product/New"><img src="/UploadedFiles/add.png" style="width:20%;height:50px;" /></a> <br><br>
+        }
+
+        <span>@TempData["Msg"]</span>
+
+        @foreach (var item in Model)
+        {
+            <br>
+            <div class="prodbox" pid=@item>
+
+                <div style="float:left">
+                    <img src="/UploadedFiles/@item.PictureName" style="width:100px;height:100px;" />
+                </div>
+
+                <div style="float: left;">
+
+                    <b>Product Id:</b> @item.ProductID <br />
+                    <b>Name:</b> @item.Name <br />
+                    <b>Price:</b> @item.Price <br />
+                    <b>Created On:</b> @item.CreatedOn<br>
+                    <b> created by:</b>
+                    @{
+            var user = PMS.DAL.UserDAO.GetUserById(item.CreatedBy);
+            if (user != null)
+            {
+                @user.Name;
+            }
+                    }
+                </div>
+                <div style="clear:both">
+                    @if (WebPrac.Security.SessionManager.User.IsAdmin || WebPrac.Security.SessionManager.User.UserID == item.CreatedBy)
+                    {
+                        <a href='@Url.Content("~/Product/Edit2/" + @item.ProductID)'>Edit</a>
+                        <a href='@Url.Content("~/Product/Delete/" + @item.ProductID)' onclick="return confirm('Are you sure, you want to delete it?')">Delete</a>
+                        //<input type="submit" name="submit" value="Edit" class="editbutton" pid="@item.ProductID" />
+                    }
+                </div>
+                <form action='@Url.Content("~/Product/SaveComment")' method="post">
+                    <div class="commentarea">
+                        <input type="hidden" name="product" id="ProductID" value=@item.ProductID />
+                        <textarea name="textComment" class="txtComment" id="txtComment" rows="1" cols="50"></textarea>
+                        <button id="txtComment" value="Add" class="addcomment">Add</button>
+                    </div>
+                </form>
+                <br />
+                <div class="comments">
+                    <div>
+                        @foreach (var comment in item.Comments)
+                        {
+                            
+                            <div class="comment">
+
+                                <img src='@Url.Content("~/UploadedFiles/" + comment.PictureName)' style="width:100px;height:100px;" />@comment.PictureName
+                                <div>
+                                    <span class="name"><b>Commented By: </b><a target="_blank" href='@Url.Action("Userscreen", "User", new { pic = @comment.PictureName })'>@comment.UserName</a></span><br>
+                                    <span class="comment-text"><b>Comment: </b>@comment.CommentText</span> <br />
+                                    <span class="comment-text"><b>Commented On: </b>@comment.CommentOn</span><br>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div style="clear:both"></div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <div style="background-color: beige">
+                <br>
+            </div>
+        }
+    </div>
+</body>
+
+
+
